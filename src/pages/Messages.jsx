@@ -24,8 +24,8 @@ export default function Messages() {
       <section className="px-5">
         <h2 className="text-accent text-sm font-semibold mb-3">New Matches</h2>
         <div className="flex gap-4 overflow-x-auto pb-2 -mx-5 px-5">
-          {matches.map((id) => {
-            const p = getProfile(id)
+          {matches.map(getProfile).filter(Boolean).map((p) => {
+            const id = p.id
             return (
               <Link key={id} to={`/messages/${id}`} className="flex flex-col items-center gap-1.5 shrink-0">
                 <img src={p.photo} alt={p.name} className="w-16 h-16 rounded-full object-cover border-2 border-accent" />

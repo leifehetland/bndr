@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { seedThreads, newMatchOpeners, smallTalkReplies } from '../data/conversations'
-import { matchedProfiles, getProfile } from '../data/profiles'
+import { getProfile } from '../data/profiles'
 
 const toMessages = (id, list) =>
   list.map((m, i) => ({
@@ -14,13 +14,27 @@ const toMessages = (id, list) =>
 const buildInitialState = () => ({
   liked: [],
   passed: [],
-  matches: matchedProfiles.map((p) => p.id),
-  unread: ['suitor1'],
+  matches: Object.keys(seedThreads),
+  unread: ['p9'], // Max's "So excited to see you!" is unread at the start
   threads: Object.fromEntries(
     Object.entries(seedThreads).map(([id, list]) => [id, toMessages(id, list)])
   ),
   replyCursor: 0,
 })
+
+// Drops saved ids for profiles that no longer exist in src/data/profiles.js,
+// so removing a profile never breaks a phone that already matched them.
+const pruneState = (state) => {
+  const known = (id) => !!getProfile(id)
+  return {
+    ...state,
+    liked: (state.liked || []).filter(known),
+    passed: (state.passed || []).filter(known),
+    matches: (state.matches || []).filter(known),
+    unread: (state.unread || []).filter(known),
+    threads: Object.fromEntries(Object.entries(state.threads || {}).filter(([id]) => known(id))),
+  }
+}
 
 const message = (from, text) => ({
   id: `m_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
@@ -35,12 +49,17 @@ const useBndrStore = create(
     (set, get) => ({
       ...buildInitialState(),
 
-      /** Returns true when the swipe creates a match. */
+      /**
+       * Returns true when the match screen should show (right swipe on a
+       * profile that likes JR back). It shows every time so the moment can be
+       * reshot; an existing match and its thread are never duplicated or wiped.
+       */
       swipe: (profileId, dir) => {
         const s = get()
         const profile = getProfile(profileId)
-        const isMatch = dir === 'right' && !!profile?.matchesBack && !s.matches.includes(profileId)
         if (s.liked.includes(profileId) || s.passed.includes(profileId)) return false
+        const showMatch = dir === 'right' && !!profile?.matchesBack
+        const isMatch = showMatch && !s.matches.includes(profileId)
         set({
           liked: dir === 'right' ? [...s.liked, profileId] : s.liked,
           passed: dir === 'left' ? [...s.passed, profileId] : s.passed,
@@ -55,7 +74,7 @@ const useBndrStore = create(
               }
             : s.threads,
         })
-        return isMatch
+        return showMatch
       },
 
       /** Brings back passed/liked profiles. Matches stay matched. */
@@ -82,7 +101,13 @@ const useBndrStore = create(
 
       reset: () => set(buildInitialState()),
     }),
-    { name: 'bndr_state', version: 2, migrate: () => buildInitialState() }
+    {
+      name: 'bndr_state',
+      version: 3,
+      migrate: () => buildInitialState(),
+      // Runs on every load, after migrate
+      merge: (persisted, current) => ({ ...current, ...pruneState(persisted || {}) }),
+    }
   )
 )
 

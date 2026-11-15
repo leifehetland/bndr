@@ -14,9 +14,11 @@ history lives in its own repo; this repo starts fresh.
 - Script beat: JR walks into FORKIN' ROAD and checks his Bndr messages to make
   sure he's meeting the right guy, then spots **Suitor #1** (early 30s, white
   collar, perfectly coiffed hair).
-- The Suitor #1 thread must read as a believable confirmation of tonight's
-  dinner at Forkin' Road. It is the most important screen for the shoot.
-- Suitors #2 to #6 (dating montage) can appear as other matches / threads.
+- Suitor #1 is **Max** (`public/1.jpeg`). His thread confirms tonight's dinner
+  at Forkin' Road and ends with an unread "So excited to see you!", pinned to
+  the top of Messages. It is the most important screen for the shoot.
+- The other 4 (Derek, Kevin, Luis, Sam; `public/2-5`) have short small-talk
+  threads. No placeholder or randomuser photos anywhere: the app runs offline.
 - Check the script (`../TMP_TEASER SCRIPT.pdf`) before writing any copy that
   references story events.
 
@@ -96,8 +98,6 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - No GenAI faces, and no photos scraped from real people (GitHub avatars,
   social profiles, etc.). Putting a non-consenting real person's face on a
   dating-app parody that ends up on screen is a likeness/release problem.
-- Dev placeholders: randomuser.me portraits, referenced by URL only from
-  `src/data/profiles.js`.
 - For anything that will be filmed, swap in photos of cast/crew/extras with
   signed releases, saved locally in `public/` and referenced as `'/name.jpg'`
   so the prop works offline on set.
@@ -107,8 +107,7 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
   likeness), used for the first five swipe cards (Max, Derek, Kevin, Luis, Sam).
 - Resize big camera originals before dropping them in `public/` (about 1200px,
   upright). Full-size originals live in `photo-originals/` (not shipped).
-- Suitor #1's profile photo must be the actual Suitor #1 actor (JR recognizes
-  him in the scene).
+- Suitor #1's profile photo is the actual Suitor #1 actor (`public/1.jpeg`).
 
 ## Working rules
 

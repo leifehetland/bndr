@@ -3,10 +3,11 @@
  * timestamp when the app state is built (and rebuilt on /reset), so the thread
  * always reads as "today" on set.
  *
- * Suitor #1 is the story-critical thread: JR checks it on arrival at Forkin' Road.
+ * Max (Suitor #1) is the story-critical thread: JR checks it on arrival at Forkin' Road.
  */
 export const seedThreads = {
-  suitor1: [
+  // Max (1.jpeg, Suitor #1): newest thread, always on top, unread.
+  p9: [
     { from: 'them', text: 'Okay I have to say it, your dog in pic 3 is a 10/10', minutesAgo: 60 * 26 },
     { from: 'jr', text: 'Ha thank you, she knows it too. Unfortunately', minutesAgo: 60 * 26 - 4 },
     { from: 'them', text: 'So are we finally doing this dinner thing?', minutesAgo: 60 * 25 },
@@ -15,20 +16,33 @@ export const seedThreads = {
     { from: 'jr', text: 'Someone did their homework', minutesAgo: 60 * 25 - 10 },
     { from: 'them', text: 'Tomorrow at 7?', minutesAgo: 60 * 24 - 30 },
     { from: 'jr', text: 'It\'s a date 🙂', minutesAgo: 60 * 24 - 32 },
-    { from: 'them', text: 'Just grabbed a table by the window. See you soon!', minutesAgo: 14 },
+    { from: 'them', text: 'Just grabbed a table by the window', minutesAgo: 14 },
     { from: 'jr', text: 'Walking in now', minutesAgo: 3 },
-    { from: 'them', text: 'Window table, I\'ll wave 👋', minutesAgo: 1 },
+    { from: 'them', text: 'So excited to see you!', minutesAgo: 1 },
   ],
-  suitor2: [
-    { from: 'them', text: 'Important question before we go any further', minutesAgo: 60 * 24 * 9 },
-    { from: 'them', text: 'How do you feel about salmon balls', minutesAgo: 60 * 24 * 9 - 1 },
-    { from: 'jr', text: 'I have... never thought about salmon balls', minutesAgo: 60 * 24 * 9 - 20 },
-    { from: 'them', text: 'That changes this week. Trust me', minutesAgo: 60 * 24 * 9 - 22 },
+  // Derek (2.jpeg)
+  p1: [
+    { from: 'them', text: 'Quick posture check: are you slouching right now', minutesAgo: 60 * 5 },
+    { from: 'jr', text: '...I am now sitting up very straight', minutesAgo: 60 * 5 - 3 },
+    { from: 'them', text: 'Proud of you 😂', minutesAgo: 60 * 5 - 4 },
   ],
-  suitor3: [
-    { from: 'jr', text: 'Thanks again for dinner last night!', minutesAgo: 60 * 24 * 5 },
-    { from: 'them', text: 'Sorry I got a little emotional during dessert', minutesAgo: 60 * 24 * 5 - 30 },
-    { from: 'them', text: 'And the appetizers. And the entree', minutesAgo: 60 * 24 * 5 - 31 },
+  // Luis (3.jpg)
+  p6: [
+    { from: 'jr', text: 'Okay chef, settle this. Pineapple on pizza?', minutesAgo: 60 * 28 },
+    { from: 'them', text: 'I will not be answering that without a lawyer present', minutesAgo: 60 * 27 },
+    { from: 'jr', text: 'Ha that\'s a yes', minutesAgo: 60 * 27 - 5 },
+  ],
+  // Sam (4.jpg)
+  p4: [
+    { from: 'them', text: 'Hey! How\'s your weekend going?', minutesAgo: 60 * 24 * 2 },
+    { from: 'jr', text: 'Pretty good! Just got back from a run. You?', minutesAgo: 60 * 24 * 2 - 15 },
+    { from: 'them', text: 'Working a double but the playlist is elite tonight', minutesAgo: 60 * 24 * 2 - 20 },
+  ],
+  // Kevin (5.jpeg)
+  p3: [
+    { from: 'them', text: 'Random question but do you own a suit', minutesAgo: 60 * 24 * 4 },
+    { from: 'jr', text: 'Do I need to?', minutesAgo: 60 * 24 * 4 - 10 },
+    { from: 'them', text: 'I have 6 weddings this summer. No pressure', minutesAgo: 60 * 24 * 4 - 12 },
   ],
 }
 
