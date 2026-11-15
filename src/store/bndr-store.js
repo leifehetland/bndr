@@ -36,6 +36,22 @@ const pruneState = (state) => {
   }
 }
 
+// Seeded messages (ids `${profileId}_${index}`) get fresh timestamps on every
+// launch, so Max's thread always reads as "today" even if the phone first
+// opened the app days before the shoot.
+const reanchorSeeds = (threads) =>
+  Object.fromEntries(
+    Object.entries(threads).map(([id, list]) => [
+      id,
+      list.map((m) => {
+        const seed = seedThreads[id]?.[Number(m.id.slice(id.length + 1))]
+        return m.id.startsWith(`${id}_`) && seed
+          ? { ...m, timestamp: new Date(Date.now() - seed.minutesAgo * 60000).toISOString() }
+          : m
+      }),
+    ])
+  )
+
 const message = (from, text) => ({
   id: `m_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
   from,
@@ -105,8 +121,14 @@ const useBndrStore = create(
       name: 'bndr_state',
       version: 3,
       migrate: () => buildInitialState(),
-      // Runs on every load, after migrate
-      merge: (persisted, current) => ({ ...current, ...pruneState(persisted || {}) }),
+      // Runs on every load, after migrate. With nothing saved yet (new phone,
+      // or a fresh home-screen install, which has its own storage on iOS),
+      // persisted is undefined: keep the seeded state instead of wiping it.
+      merge: (persisted, current) => {
+        if (!persisted) return current
+        const pruned = pruneState({ ...current, ...persisted })
+        return { ...current, ...pruned, threads: reanchorSeeds(pruned.threads) }
+      },
     }
   )
 )
