@@ -10,19 +10,50 @@
   --color-muted: #8a8a93;
   --color-accent: #ff5757;   /* logo coral */
   --color-accent-2: #c76be5; /* logo purple */
+  --color-brand-blue: #054bae; /* logo background, left */
+  --color-brand-purple: #c76be5; /* logo background, right */
+  --color-edge-top: #0b1d3c;    /* behind status bar; keep in sync with theme-color in index.html */
+  --color-edge-bottom: #34213f; /* behind Safari toolbar / home indicator */
   --color-like: #3ddc84;
   --color-nope: #ff4d4f;
 }
 
 html, body { margin: 0; overflow-x: clip; max-width: 100vw; }
+html { background-color: var(--color-edge-top); }
 body {
-  background-color: var(--color-bg);
+  background-color: transparent;
   color: var(--color-text);
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
 }
 #root { width: 100%; overflow-x: hidden; }
+
+/* Logo gradient washed behind every screen.
+   The layer is twice the viewport tall (top: -50vh, bottom: -50vh) so it also
+   fills the areas behind the iOS status bar and Safari toolbar. The visible
+   screen sits between 25% and 75% of the layer; above/below are solid edge
+   colors that match --color-edge-top / --color-edge-bottom. */
+.brand-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -50vh;
+  bottom: -50vh;
+  z-index: -10;
+  pointer-events: none;
+  background:
+    radial-gradient(75% 20% at 0% 30%, color-mix(in srgb, var(--color-brand-blue) 55%, transparent), transparent 70%),
+    radial-gradient(75% 20% at 100% 72%, color-mix(in srgb, var(--color-brand-purple) 45%, transparent), transparent 70%),
+    radial-gradient(55% 14% at 100% 28%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 70%),
+    linear-gradient(180deg,
+      var(--color-edge-top) 0%, var(--color-edge-top) 25%,
+      var(--color-bg) 42%, var(--color-bg) 58%,
+      var(--color-edge-bottom) 75%, var(--color-edge-bottom) 100%);
+}
+
+@keyframes glowDrift { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(4%, -3%) scale(1.06); } }
+.glow-drift { animation: glowDrift 9s ease-in-out infinite; }
 
 @keyframes pageEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 .page-enter { animation: pageEnter 0.3s ease-out; }

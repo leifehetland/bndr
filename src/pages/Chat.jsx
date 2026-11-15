@@ -31,7 +31,7 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col h-dvh">
-      <header className="flex items-center gap-3 px-3 py-3 border-b border-line bg-bg">
+      <header className="flex items-center gap-3 px-3 pb-3 pt-[calc(env(safe-area-inset-top)+0.75rem)] border-b border-line bg-bg/70 backdrop-blur-md">
         <Link to="/messages" aria-label="Back" className="text-accent text-3xl leading-none px-2">‹</Link>
         <img src={profile.photo} alt={profile.name} className="w-10 h-10 rounded-full object-cover" />
         <div>
@@ -78,7 +78,7 @@ export default function Chat() {
         <div ref={bottom} />
       </div>
 
-      <form onSubmit={send} className="flex items-center gap-2 px-3 py-3 border-t border-line pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <form onSubmit={send} className="flex items-center gap-2 px-3 py-3 border-t border-line bg-bg/70 backdrop-blur-md pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <input
           value={draft}
           onChange={(e) => setDraft(e.target.value)}

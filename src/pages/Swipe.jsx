@@ -31,13 +31,17 @@ export default function Swipe() {
   }
 
   return (
-    <div className="page-enter flex flex-col h-dvh pb-16">
-      <header className="flex items-center justify-between px-5 pt-4 pb-2">
+    <div className="page-enter flex flex-col h-dvh pb-[calc(4rem+env(safe-area-inset-bottom))]">
+      <header className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top)+1rem)] pb-2">
         <Link to="/"><Logo size="sm" /></Link>
         <span className="text-xs text-muted">Atlanta, GA</span>
       </header>
 
       <div className="relative flex-1 mx-3 my-2">
+        <div
+          className="glow-drift absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-brand-blue via-accent/70 to-brand-purple blur-2xl opacity-70"
+          aria-hidden="true"
+        />
         {top ? (
           [...visible].reverse().map((p) => {
             const depth = visible.indexOf(p)

@@ -17,7 +17,7 @@ export default function Messages() {
 
   return (
     <div className="page-enter min-h-dvh pb-24">
-      <header className="flex items-center justify-between px-5 pt-4 pb-3">
+      <header className="flex items-center justify-between px-5 pt-[calc(env(safe-area-inset-top)+1rem)] pb-3">
         <Logo size="sm" />
       </header>
 

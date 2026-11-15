@@ -4,7 +4,7 @@ import Logo from './Logo'
 
 export default function MatchModal({ profile, onClose }) {
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/85 backdrop-blur-sm px-8">
+    <div className="fixed -inset-y-[50vh] inset-x-0 py-[50vh] z-40 flex items-center justify-center bg-black/85 backdrop-blur-sm px-8">
       <div className="pop w-full max-w-[340px] text-center">
         <div className="mb-4"><Logo size="md" wordmark={false} /></div>
         <p className="text-5xl font-black italic bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent">

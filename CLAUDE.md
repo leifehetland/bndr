@@ -72,6 +72,9 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - Logo: `public/logo.png` (square app icon, no text). Rendered via `src/components/Logo.jsx`; also favicon + apple-touch-icon.
 - Colors: sampled from the logo (coral #ff5757, purple #c76be5) as theme tokens in `src/index.css` (`@theme`).
   Change the palette there only. Do not scatter hex values through components.
+- Look: dark base with the logo's blue-to-purple gradient washed behind every
+  screen (`.brand-backdrop` in `index.css`), strongest as a glow behind the
+  swipe cards. No light mode: only one look gets filmed.
 
 ## Full screen on phones
 
@@ -79,10 +82,14 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
   Apple meta tags in `index.html`. On the prop phone, open the hosted URL and
   use Share > Add to Home Screen (iOS) or Install app (Android), then launch
   from the icon: no browser bars.
+- Edge to edge: `viewport-fit=cover` + `black-translucent` status bar, so the
+  app draws under the status bar when launched from the home screen. Headers
+  pad with `env(safe-area-inset-top)`. The `.brand-backdrop` layer is oversized
+  so the gradient also fills behind Safari's bars in a normal browser tab.
 - Icons: `public/icon-180.png` (iOS), `icon-192/512.png`, `icon-maskable-512.png`,
   all generated from `public/logo.png`.
-- Must be hosted (e.g. Render static site) with a rewrite of `/*` to
-  `/index.html` so deep links like `/reset` work.
+- Hosted on Vercel (bndr-nine.vercel.app). `vercel.json` rewrites `/*` to
+  `/index.html` so deep links like `/reset` work. Static files in `public/` are served before the rewrite.
 
 ## Photos (important)
 
@@ -94,8 +101,10 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - For anything that will be filmed, swap in photos of cast/crew/extras with
   signed releases, saved locally in `public/` and referenced as `'/name.jpg'`
   so the prop works offline on set.
-- Cleared so far: `public/1.jpeg` to `public/4.jpg` (friends who OK'd their
-  likeness), used for the first four swipe cards (Derek, Kevin, Luis, Sam).
+- Cleared so far: `public/1.jpeg` to `public/5.jpeg` (friends who OK'd their
+  likeness), used for the first five swipe cards (Max, Derek, Kevin, Luis, Sam).
+- Resize big camera originals before dropping them in `public/` (about 1200px,
+  upright). Full-size originals live in `photo-originals/` (not shipped).
 - Suitor #1's profile photo must be the actual Suitor #1 actor (JR recognizes
   him in the scene).
 

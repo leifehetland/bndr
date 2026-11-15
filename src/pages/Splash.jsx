@@ -3,9 +3,10 @@ import Logo from '../components/Logo'
 
 export default function Splash() {
   return (
-    <div className="page-enter relative flex flex-col min-h-dvh px-8 overflow-hidden">
-      <div className="absolute -top-32 -left-24 w-80 h-80 rounded-full bg-accent/25 blur-3xl" />
-      <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-accent-2/20 blur-3xl" />
+    <div className="page-enter relative flex flex-col min-h-dvh px-8 pt-[env(safe-area-inset-top)] overflow-hidden">
+      <div className="glow-drift absolute -top-32 -left-24 w-96 h-96 rounded-full bg-brand-blue/60 blur-3xl" />
+      <div className="glow-drift absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-brand-purple/50 blur-3xl" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-accent/20 blur-3xl" />
 
       <div className="relative flex-1 flex flex-col items-center justify-center gap-3">
         <Logo size="lg" />

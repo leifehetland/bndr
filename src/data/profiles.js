@@ -50,9 +50,10 @@ export const matchedProfiles = [
 
 // The swipe deck. matchesBack: true triggers the match overlay on a right swipe.
 export const deckProfiles = [
-  // First four: real friends who OK'd their likeness (public/1-4).
+  // First five: real friends who OK'd their likeness (public/1-5).
+  { id: 'p9', name: 'Max', age: 30, job: 'Photographer', distance: '2 miles away', bio: 'Golden hour chaser. I will take your profile pics for free if you laugh at my jokes.', photo: '/1.jpeg', matchesBack: true },
   { id: 'p1', name: 'Derek', age: 29, job: 'Physical Therapist', distance: '1 mile away', bio: 'Will fix your posture whether you ask or not. Dog dad to a very dramatic corgi.', photo: '/2.jpeg', matchesBack: true },
-  { id: 'p3', name: 'Kevin', age: 35, job: 'Sales Director', distance: '7 miles away', bio: 'Work hard, brunch harder. Looking for my plus-one to every wedding this summer.', photo: '/1.jpeg', matchesBack: false },
+  { id: 'p3', name: 'Kevin', age: 35, job: 'Sales Director', distance: '7 miles away', bio: 'Work hard, brunch harder. Looking for my plus-one to every wedding this summer.', photo: '/5.jpeg', matchesBack: false },
   { id: 'p6', name: 'Luis', age: 34, job: 'Chef', distance: '3 miles away', bio: 'I will cook for you on the second date. The first date is for seeing if you salt your food before tasting it.', photo: '/3.jpg', matchesBack: true },
   { id: 'p4', name: 'Sam', age: 28, job: 'Bartender', distance: '1 mile away', bio: 'I make a mean old fashioned and an even meaner playlist. Come say hi on a Tuesday.', photo: '/4.jpg', matchesBack: true },
   { id: 'p2', name: 'Andre', age: 33, job: 'Architect', distance: '4 miles away', bio: 'I have strong opinions about chairs. Weekend hiker, weeknight overthinker.', photo: ph(52), matchesBack: false },
