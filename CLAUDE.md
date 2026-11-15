@@ -59,7 +59,7 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - Functional components + hooks only.
 - Tailwind only. Inline `style` is allowed solely for drag transforms/rotation
   on swipe cards.
-- Mobile-first, prop phone viewport: outer container `max-w-[390px] mx-auto`.
+- Mobile-first, prop phone viewport: outer container `max-w-[480px] mx-auto` (fills any phone, centered on desktop).
 - Timestamps in seed data use ISO 8601.
 - No lorem ipsum. Bios and messages must read like real dating-app copy.
 - Parody, not replica: echo Tinder's patterns, never copy its logo, flame
@@ -72,6 +72,17 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - Logo: `public/logo.png` (square app icon, no text). Rendered via `src/components/Logo.jsx`; also favicon + apple-touch-icon.
 - Colors: sampled from the logo (coral #ff5757, purple #c76be5) as theme tokens in `src/index.css` (`@theme`).
   Change the palette there only. Do not scatter hex values through components.
+
+## Full screen on phones
+
+- Installable web app: `public/manifest.webmanifest` (`display: standalone`) +
+  Apple meta tags in `index.html`. On the prop phone, open the hosted URL and
+  use Share > Add to Home Screen (iOS) or Install app (Android), then launch
+  from the icon: no browser bars.
+- Icons: `public/icon-180.png` (iOS), `icon-192/512.png`, `icon-maskable-512.png`,
+  all generated from `public/logo.png`.
+- Must be hosted (e.g. Render static site) with a rewrite of `/*` to
+  `/index.html` so deep links like `/reset` work.
 
 ## Photos (important)
 

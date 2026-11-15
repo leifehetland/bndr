@@ -7,7 +7,7 @@ import Reset from './pages/Reset'
 
 export default function App() {
   return (
-    <div className="max-w-[390px] mx-auto min-h-dvh bg-bg">
+    <div className="max-w-[480px] mx-auto min-h-dvh bg-bg">
       <Routes>
         <Route path="/" element={<Splash />} />
         <Route path="/swipe" element={<Swipe />} />

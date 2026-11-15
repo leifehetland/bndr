@@ -7,7 +7,7 @@ const tab = ({ isActive }) =>
 export default function BottomNav() {
   const unreadCount = useBndrStore((s) => s.unread.length)
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[390px] bg-bg/95 backdrop-blur border-t border-line flex pb-[env(safe-area-inset-bottom)] z-20">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-bg/95 backdrop-blur border-t border-line flex pb-[env(safe-area-inset-bottom)] z-20">
       <NavLink to="/swipe" className={tab}>
         <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor" aria-hidden="true">
           <rect x="5" y="3" width="11" height="15" rx="2.5" opacity="0.45" transform="rotate(-10 10 10)" />
