@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SwipeCard from '../components/SwipeCard'
 import MatchModal from '../components/MatchModal'
@@ -10,13 +10,16 @@ import { deckProfiles, getProfile } from '../data/profiles'
 export default function Swipe() {
   const liked = useBndrStore((s) => s.liked)
   const passed = useBndrStore((s) => s.passed)
-  const matches = useBndrStore((s) => s.matches)
   const swipe = useBndrStore((s) => s.swipe)
   const restartDeck = useBndrStore((s) => s.restartDeck)
   const [exitDir, setExitDir] = useState(null)
   const [match, setMatch] = useState(null)
 
-  const seen = new Set([...liked, ...passed, ...matches])
+  // Every visit to Discover starts from the top of the deck
+  useEffect(() => { restartDeck() }, [restartDeck])
+
+  // Same 5 cards in the same order on every visit, matched or not.
+  const seen = new Set([...liked, ...passed])
   const visible = deckProfiles.filter((p) => !seen.has(p.id)).slice(0, 3)
   const top = visible[0]
 

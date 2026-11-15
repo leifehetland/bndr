@@ -39,7 +39,7 @@ const useBndrStore = create(
       swipe: (profileId, dir) => {
         const s = get()
         const profile = getProfile(profileId)
-        const isMatch = dir === 'right' && !!profile?.matchesBack
+        const isMatch = dir === 'right' && !!profile?.matchesBack && !s.matches.includes(profileId)
         if (s.liked.includes(profileId) || s.passed.includes(profileId)) return false
         set({
           liked: dir === 'right' ? [...s.liked, profileId] : s.liked,

@@ -101,6 +101,8 @@ Commands: `npm install`, `npm run dev`, `npm run build`, `npm run lint`.
 - For anything that will be filmed, swap in photos of cast/crew/extras with
   signed releases, saved locally in `public/` and referenced as `'/name.jpg'`
   so the prop works offline on set.
+- The swipe deck is exactly 5 cards (`public/1-5`), same order every time
+  Discover opens: Max, Derek, Kevin, Luis, Sam. No placeholder extras.
 - Cleared so far: `public/1.jpeg` to `public/5.jpeg` (friends who OK'd their
   likeness), used for the first five swipe cards (Max, Derek, Kevin, Luis, Sam).
 - Resize big camera originals before dropping them in `public/` (about 1200px,
